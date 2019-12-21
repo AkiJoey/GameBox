@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/ttafe/ttafe.qml</file>
+        <file>qml/ttafe/tile.qml</file>
+        <file>qml/ttafe/ttafe.js</file>
+        <file>qml/tetris/tetris.qml</file>
+        <file>qml/tetris/tile.qml</file>
+        <file>qml/tetris/tetris.js</file>
+        <file>qml/snake/snake.qml</file>
+        <file>qml/snake/tile.qml</file>
+        <file>qml/snake/snake.js</file>
+    </qresource>
+</RCC>
