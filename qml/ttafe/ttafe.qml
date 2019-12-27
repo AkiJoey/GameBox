@@ -8,15 +8,12 @@ import "ttafe.js" as Script
 ApplicationWindow {
 	id: ttafe
 	visible: false
-	width: 550
-	height: 630
-	title: qsTr("GameBox - 2048")
-
 	x: (Screen.width - width) / 2
 	y: (Screen.height - height) / 2
-
+	width: 550
+	height: 630
 	color: "#FAF8EF"
-
+	title: qsTr("GameBox - 2048")
 	onClosing: ttafe.destroy();
 
 	menuBar: MenuBar {
@@ -25,7 +22,7 @@ ApplicationWindow {
 			MenuItem {
 				text: qsTr("New Game")
 				shortcut: "Ctrl+N"
-				onTriggered: Script.startupFunction();
+				onTriggered: Script.start();
             }
 			MenuItem {
 				text: qsTr("Exit")
@@ -34,16 +31,11 @@ ApplicationWindow {
 			}
 		}
 		Menu {
-			id: helpMenu
 			title: qsTr("Help")
 			MenuItem {
 				text: qsTr("About 2048")
 				onTriggered: aboutDialog.open();
 			}
-			// MenuItem {
-			// 	text: qsTr("About Qt")
-			// 	onTriggered: console.log(Qt);
-			// }
 		}
 	}
 
@@ -165,16 +157,16 @@ ApplicationWindow {
 		MessageDialog {
             id: aboutDialog
             title: qsTr("About 2048")
-            text: qsTr("<p style='font-weight: bold;font-size: 30px'>GameBox - 2048</p><br/><p>Version 1.0.0</p><br/><p>©2019 AkiJoey &lt;akijoey@akijoey.com&gt;</p>")
+            text: qsTr("<p>GameBox - 2048</p><br/><p>Version 1.0.0</p><br/><p>©2019 AkiJoey &lt;akijoey@akijoey.com&gt;</p>")
             standardButtons: StandardButton.Ok
         }
 
         MessageDialog {
             id: deadDialog
             title: qsTr("Game Over")
-            text: qsTr("Game Over!")
-            standardButtons: StandardButton.Retry | StandardButton.Abort
-            onAccepted: Script.startupFunction();
+            text: qsTr("Try again!")
+            standardButtons: StandardButton.Abort | StandardButton.Retry
+            onAccepted: Script.start();
             onRejected: ttafe.destroy();
         }
 
@@ -184,8 +176,8 @@ ApplicationWindow {
             text: qsTr("You win! Continue playing?")
             standardButtons: StandardButton.Yes | StandardButton.No
             onYes: close()
-            onNo: Script.startupFunction()
+            onNo: ttafe.destroy()
         }
 	}
-	Component.onCompleted: Script.startupFunction();
+	Component.onCompleted: Script.start();
 }

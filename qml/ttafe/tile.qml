@@ -23,7 +23,8 @@ Rectangle {
         font.bold: true
         anchors.centerIn: parent
         Behavior on text {
-            PropertyAnimation { target: tileContainer
+            PropertyAnimation {
+                target: tileContainer
                 property: "opacity"
                 from: 0.5
                 to: 1

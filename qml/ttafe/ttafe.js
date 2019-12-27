@@ -17,7 +17,7 @@ function getValue(n) {
     return Math.pow(2, n).toString();
 }
 
-function startupFunction() {
+function start() {
     // Initialize variables
     score = 0;
     isWin = false;

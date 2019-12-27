@@ -11,7 +11,7 @@ Rectangle {
     property color tileColor: "black"
     property int moveAnimTime: 100
     property int newTileAnimTime: 10
-    property bool runNewTileAnim: false //true
+    property bool runNewTileAnim: false
     property bool destroyFlag: false
 
     Text {
@@ -23,7 +23,8 @@ Rectangle {
         font.bold: true
         anchors.centerIn: parent
         Behavior on text {
-            PropertyAnimation { target: tileContainer
+            PropertyAnimation {
+                target: tileContainer
                 property: "opacity"
                 from: 0.5
                 to: 1

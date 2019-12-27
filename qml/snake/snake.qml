@@ -5,18 +5,15 @@ import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.2
 import "snake.js" as Script
 
-ApplicationWindow {。
+ApplicationWindow {
 	id: snake
 	visible: false
-	width: 550
-	height: 630	//740
-	title: qsTr("GameBox - Snake")
-
 	x: (Screen.width - width) / 2
 	y: (Screen.height - height) / 2
-
+	width: 550
+	height: 630
 	color: "#FAEEFF"
-
+	title: qsTr("GameBox - Snake")
 	onClosing: snake.destroy();
 
 	menuBar: MenuBar {
@@ -140,7 +137,7 @@ ApplicationWindow {。
 		}
 
 		Rectangle {
-			y: 80	//170
+			y: 80
 			width: 500
 			height: 500
 			color: "#E194FD"
@@ -167,15 +164,15 @@ ApplicationWindow {。
 		MessageDialog {
             id: aboutDialog
             title: qsTr("About Snake")
-            text: qsTr("<p style='font-weight: bold;font-size: 30px'>GameBox - Snake</p><br/><p>Version 1.0.0</p><br/><p>©2019 AkiJoey &lt;akijoey@akijoey.com&gt;</p>")
+            text: qsTr("<p>GameBox - Snake</p><br/><p>Version 1.0.0</p><br/><p>©2019 AkiJoey &lt;akijoey@akijoey.com&gt;</p>")
             standardButtons: StandardButton.Ok
         }
 
         MessageDialog {
             id: deadDialog
             title: qsTr("Game Over")
-            text: qsTr("Game Over!")
-            standardButtons: StandardButton.Retry | StandardButton.Abort
+            text: qsTr("Try again!")
+            standardButtons: StandardButton.Abort | StandardButton.Retry
             onAccepted: Script.start();
             onRejected: snake.destroy();
         }
@@ -189,10 +186,7 @@ ApplicationWindow {。
 				close();
 				timer.start();
 			}
-            onNo: {
-				// Script.start();
-				snake.destroy();
-			}
+            onNo: snake.destroy()
         }
 	}
 	Component.onCompleted: Script.start();

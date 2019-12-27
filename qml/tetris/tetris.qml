@@ -8,15 +8,12 @@ import "tetris.js" as Script
 ApplicationWindow {
 	id: tetris
 	visible: false
-	width: 550
-	height: 630
-	title: qsTr("GameBox - Tetris")
-
 	x: (Screen.width - width) / 2
 	y: (Screen.height - height) / 2
-
+	width: 550
+	height: 630
 	color: "#E8FFFB"
-
+	title: qsTr("GameBox - Tetris")
 	onClosing: tetris.destroy();
 
 	menuBar: MenuBar {
@@ -167,15 +164,15 @@ ApplicationWindow {
 		MessageDialog {
             id: aboutDialog
             title: qsTr("About Tetris")
-            text: qsTr("<p style='font-weight: bold;font-size: 30px'>GameBox - Tetris</p><br/><p>Version 1.0.0</p><br/><p>©2019 AkiJoey &lt;akijoey@akijoey.com&gt;</p>")
+            text: qsTr("<p>GameBox - Tetris</p><br/><p>Version 1.0.0</p><br/><p>©2019 AkiJoey &lt;akijoey@akijoey.com&gt;</p>")
             standardButtons: StandardButton.Ok
         }
 
         MessageDialog {
             id: deadDialog
             title: qsTr("Game Over")
-            text: qsTr("Game Over!")
-            standardButtons: StandardButton.Retry | StandardButton.Abort
+            text: qsTr("Try again!")
+            standardButtons: StandardButton.Abort | StandardButton.Retry
             onAccepted: Script.start();
             onRejected: tetris.destroy();
         }
@@ -183,16 +180,13 @@ ApplicationWindow {
         MessageDialog {
             id: winDialog
             title: qsTr("You Win")
-            text: qsTr("You win! Continue playing?")
+            text: qsTr("Continue playing?")
             standardButtons: StandardButton.Yes | StandardButton.No
             onYes: {
 				close();
 				timer.start();
 			}
-            onNo: {
-				// Script.start();
-				tetris.destroy();
-			}
+            onNo: tetris.destroy()
         }
 	}
 	Component.onCompleted: Script.start();
